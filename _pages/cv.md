@@ -10,52 +10,14 @@ redirect_from:
 {% include base_path %}
 
 <!--
-  Placeholders are in brackets — replace them before publishing.
+  This page is just a wrapper around a PDF. To wire it up, drop your CV at
+  files/cv.pdf — the link below picks it up with no further changes.
 
-  The Publications section below is generated automatically from the files in
-  _publications/, so you never have to update it by hand. The Talks and Teaching
-  loops are commented out; uncomment them once those collections have content.
-
-  If you'd rather link a PDF than maintain this page, drop it in /files/ and
-  replace the body with a single link.
+  If you'd rather keep the filename dated (cv-2026-10.pdf, say), update the href
+  below to match. Until the file exists, the link will 404.
 -->
 
-## Education
-* [Degree], [Institution], [year]
-* [Degree], [Institution], [year]
+[**Download CV (PDF)**](/files/cv.pdf){: .btn .btn--primary}
 
-## Experience
-* [Dates]: [Role]
-  * [Organization]
-  * [One line on what you did]
-
-* [Dates]: [Role]
-  * [Organization]
-  * [One line on what you did]
-
-## Skills
-* [Area — e.g. the methods or systems you work in]
-* [Area]
-* [Tools and languages]
-
-## Publications
-  <ul>{% for post in site.publications reversed %}
-    {% include archive-single-cv.html %}
-  {% endfor %}</ul>
-
-<!-- Uncomment once _talks/ has content:
-## Talks
-  <ul>{% for post in site.talks reversed %}
-    {% include archive-single-talk-cv.html  %}
-  {% endfor %}</ul>
--->
-
-<!-- Uncomment once _teaching/ has content:
-## Teaching
-  <ul>{% for post in site.teaching reversed %}
-    {% include archive-single-cv.html %}
-  {% endfor %}</ul>
--->
-
-## Service and leadership
-* Co-founder, Taiwan AI Startups Community — [one line on the role]
+A full list of publications, with abstracts and links, is on the
+[publications page](/publications/).

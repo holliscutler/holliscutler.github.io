@@ -26,9 +26,9 @@ author:
   avatar           : "profile.png"
   name             : "Hollis Cutler"
   pronouns         : # example: "she/her"  
-  bio              : "Bio-inspired AI researcher"
-  location         : "Taiwan"  # TODO confirm (city?)
-  employer         :  # TODO your institution or affiliation
+  bio              : "Bio-inspired AI. Streaming prediction with topology that adapts to its data."
+  location         : "Taipei, Taiwan"
+  employer         : "National Taipei University of Technology"
   uri              : # URL
   email            :  # TODO add if you want a public contact address 
 

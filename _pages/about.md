@@ -7,35 +7,41 @@ redirect_from:
   - /about.html
 ---
 
-**Placeholders below are marked in brackets — replace them before publishing.**
+Software engineer and researcher specializing in bio-inspired AI, with a
+background across machine learning, robotics and automation, and geospatial
+systems, shaped by work and study in the U.S., Taiwan, and abroad.
 
-[Two or three sentences on what you study: the systems you look at, the angle you
-take, and what you're trying to find out. This is the first thing a reader sees,
-so it should stand on its own without the rest of the page.]
+My research asks whether biological flow networks — fungal mycelium and the
+slime mold *Physarum polycephalum* — can serve as a design principle for
+streaming prediction. Both store memory in their own changing structure:
+pathways that carry flow strengthen, and pathways that go unused fade. Read as a
+forecasting mechanism, that gives a predictor whose topology adapts with the
+data it processes, rather than one with fixed structure and learned weights.
 
-I'm a co-founder of the [Taiwan AI Startups Community][taic], [one sentence on
-what the community does and what your role in it is].
+I completed this work as an M.S. in the International Master Program in
+Mechanical and Automation Engineering at the **National Taipei University of
+Technology**, after a B.A. in Computer Science and Chinese Language and
+Literature at the **University of Virginia**.
 
-[taic]: # "TODO: community URL"
+I'm also a co-founder of the [Taiwan AI Startups
+Community](http://www.taiwanaistartups.com), which connects founders, engineers,
+and researchers building AI across Taiwan through talks, panels, and workshops.
+I'm the lead developer of the community's site.
 
 ## Research
 
-[A short paragraph framing your research — the through-line connecting the work
-below, rather than a restatement of the titles.]
+Two pieces of work came out of the thesis project, both from August 2026.
 
-- **[Article title]** — *[Venue]*, [year]. [One line on the finding.]
-- **[Thesis title]** — [Degree], [Institution], [year]. [One line on the question
-  it answered.]
+- **[Topology That Learns: Investigating Mycelial and Physarum Networks as a
+  Conceptual Blueprint for Streaming Time Series
+  Prediction](/publication/2026-08-01-alife-topology-that-learns)** — *ALIFE
+  2026*, with Chih-Hung G. Li. Reinterprets the Physarum conductivity equation
+  as a rule for building temporal transition graphs from a data stream; a
+  minimal online model cuts RMSE from 0.815 to 0.638 against a Kalman one-step
+  baseline on held-out temperature data.
+- **[Topology That Learns: A Bio-Inspired Streaming Forecaster for Time-Series
+  Under Categorical Drift](/publication/2026-08-02-thesis-topology-that-learns)**
+  — M.S. thesis. Extends the mechanism to streams whose generating regime
+  changes, not just its parameters.
 
-Details and PDFs are on the [publications page](/publications/).
-
-## Projects
-
-[A line introducing what kind of projects these are — research tooling, side
-work, experiments.] Each has its own page under [projects](/portfolio/).
-
-## Elsewhere
-
-[Links you want people to follow — GitHub, Scholar, Bluesky, LinkedIn. Anything
-you add to `author:` in `_config.yml` also appears as an icon in the sidebar, so
-only list things here that deserve a sentence of context.]
+Both are on the [publications page](/publications/) with abstracts and links.
