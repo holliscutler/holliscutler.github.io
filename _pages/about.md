@@ -30,6 +30,9 @@ I'm the lead developer of the community's site.
 
 ## Research
 
+**[See how it works](/how-it-works/)** — a visual walkthrough of the model, with
+the real network building itself from an empty graph over three months of data.
+
 Two pieces of work came out of the thesis project, both from August 2026.
 
 - **[Topology That Learns: Investigating Mycelial and Physarum Networks as a
