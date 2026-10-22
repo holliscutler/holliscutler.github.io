@@ -5,7 +5,7 @@ category: theses
 permalink: /publication/2026-08-02-thesis-topology-that-learns
 excerpt: "Master's thesis extending the Physarum-inspired streaming forecaster to time series under categorical drift, where the regime generating the data changes rather than just its parameters."
 date: 2026-08-02
-venue: 'National Taipei University of Technology, International Master Program in Mechanical and Automation Engineering'
+venue: 'M.S. thesis, National Taipei University of Technology'
 paperurl: 'https://drive.google.com/file/d/1Cy7BOzzoVXdKqAUUqZVIMVdT65cFqLwp/view?usp=sharing'
 citation: 'Cutler, H. (2026). &quot;Topology That Learns: A Bio-Inspired Streaming Forecaster for Time-Series Under Categorical Drift.&quot; M.S. thesis, National Taipei University of Technology.'
 ---

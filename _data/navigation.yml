@@ -3,16 +3,10 @@
 # Changing the order here will adjust the order and you can also add additional
 # links. Removing a link prevents it from showing in the header, but does not
 # prevent it from being included in the site.
-#
-# NOTE that only one of the CV options should be selected, the first is for the
-#      Markdown formatted page while the second is generated using JSON.
 
 main:
   - title: "Research"
-    url: /how-it-works/
-
-  - title: "Publications"
-    url: /publications/
+    url: /research/
 
   - title: "Projects"
     url: /portfolio/
@@ -20,8 +14,14 @@ main:
   - title: "CV"
     url: /cv/
 
-  # Uncomment any of these once you have content for them. The pages exist
-  # either way — leaving them out of this list only hides them from the header.
+  # /publications/ is deliberately not in the header. It's the formal list and
+  # stays reachable from the Research page, so the two aren't competing for the
+  # same reader.
+  #
+  # Uncomment any of these once there's content for them.
+  #
+  # - title: "Publications"
+  #   url: /publications/
   #
   # - title: "Talks"
   #   url: /talks/
@@ -31,8 +31,3 @@ main:
   #
   # - title: "Blog Posts"
   #   url: /year-archive/
-  #
-  # The template's own authoring guide. Useful while you customize; not
-  # something you want in a visitor's menu.
-  # - title: "Guide"
-  #   url: /markdown/

@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(awk '/^\\\\.grid__item/,0' _sass/layout/_archive.scss)"
+    ]
+  }
+}

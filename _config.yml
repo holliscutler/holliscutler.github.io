@@ -88,10 +88,10 @@ author:
 publication_category:
   manuscripts:
     title: 'Journal Articles'
-  theses:
-    title: 'Theses'
   conferences:
     title: 'Conference Papers'
+  theses:
+    title: 'Theses'
 
 # Site Settings
 teaser                   :  # filename of teaser fallback teaser image placed in /images/ for social media previews

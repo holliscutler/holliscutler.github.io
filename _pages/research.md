@@ -1,12 +1,15 @@
 ---
 layout: single
-title: "How it works"
+title: "Research"
 excerpt: "A streaming forecaster whose memory lives in the shape of a graph."
-permalink: /how-it-works/
+permalink: /research/
 author_profile: true
 toc: true
 toc_label: "Contents"
 toc_sticky: true
+redirect_from:
+  - /how-it-works/
+  - /publications/
 ---
 
 Most forecasters keep a fixed structure and learn weights inside it. This one
@@ -138,10 +141,22 @@ moves, and losing only where a frozen representation is perfectly adequate.
 > MycoMorph is lowest on PPG, Vibration and Motor speed, while PatchTST edges
 > the fixed-period Electricity and Air temperature records.
 
-## Read the work
+## Publications
 
-- **[Topology That Learns: Investigating Mycelial and Physarum Networks as a Conceptual Blueprint for Streaming Time Series Prediction](/publication/2026-08-01-alife-topology-that-learns)** — ALIFE 2026, with Chih-Hung G. Li
-- **[Topology That Learns: A Bio-Inspired Streaming Forecaster for Time-Series Under Categorical Drift](/publication/2026-08-02-thesis-topology-that-learns)** — M.S. thesis
+{% assign groups = site.publication_category %}
+{% for category in groups %}
+  {% assign items = site.publications | where: "category", category[0] | sort: "date" | reverse %}
+  {% if items.size > 0 %}
+<h3 class="pub-group">{{ category[1].title }}</h3>
+    {% for post in items %}
+<div class="pub-entry">
+  <h4 class="pub-entry__title"><a href="{{ post.url }}">{{ post.title }}</a></h4>
+  <p class="pub-entry__meta">{{ post.venue }} &middot; {{ post.date | date: "%B %Y" }}</p>
+  <p class="pub-entry__excerpt">{{ post.excerpt | markdownify | remove: "<p>" | remove: "</p>" }}</p>
+</div>
+    {% endfor %}
+  {% endif %}
+{% endfor %}
 
 <p class="notice--info" markdown="1">
 The animation is an illustrative three-month run shown to make the mechanism

@@ -1,4 +1,126 @@
 /* ==========================================================================
+   Cards
+   --------------------------------------------------------------------------
+   The theme's grid items show a teaser image and a title only — the excerpt is
+   hidden. For a card-led layout the one-line description is the point, so it's
+   restored here and the items get real card chrome (border, padding, lift on
+   hover) so they read as clickable objects rather than list entries.
+   ========================================================================== */
+
+/* ==========================================================================
+   Publication entries
+   --------------------------------------------------------------------------
+   The publications list lives at the foot of the Research page rather than on
+   a page of its own, so it is styled to read as a quiet reference list under
+   the essay above it — not as another set of competing cards.
+   ========================================================================== */
+
+.pub-group {
+  margin: 1.75em 0 0.5em;
+  padding-bottom: 0.3em;
+  border-bottom: 1px solid $light-gray;
+  font-size: $type-size-5;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: $dark-gray;
+}
+
+.pub-entry {
+  margin: 0 0 1.4em;
+  padding-left: 0.9em;
+  border-left: 3px solid $light-gray;
+
+  &:hover {
+    border-left-color: $primary-color;
+  }
+
+  &__title {
+    margin: 0 0 0.15em;
+    font-size: $type-size-5;
+    line-height: 1.35;
+  }
+
+  &__meta {
+    margin: 0 0 0.4em;
+    font-size: $type-size-7;
+    color: $dark-gray;
+  }
+
+  &__excerpt {
+    margin: 0;
+    font-size: $type-size-6;
+  }
+}
+
+/* Grid items are floated by the theme's susy gallery mixin, so the wrapper has
+   to clear them or following content rides up into the cards. */
+.grid__wrapper {
+  @include clearfix();
+  margin-bottom: 2em;
+}
+
+.grid__item {
+  .archive__item-excerpt {
+    display: block;
+    font-size: $type-size-6;
+    margin-bottom: 0;
+  }
+
+  .archive__item {
+    height: 100%;
+    padding: 1.25em;
+    border: 1px solid $light-gray;
+    border-radius: $border-radius;
+    background: $lighter-gray;
+    transition: transform $global-transition, box-shadow $global-transition;
+  }
+
+  .archive__item:hover {
+    transform: translateY(-2px);
+    box-shadow: $box-shadow;
+  }
+
+  /* Teaser art should sit flush with the card edges, not inset by the padding */
+  .archive__item-teaser {
+    margin: -1.25em -1.25em 1em;
+    border-radius: $border-radius $border-radius 0 0;
+    overflow: hidden;
+  }
+
+  .archive__item-title {
+    margin-top: 0;
+  }
+}
+
+/* Feature cards: same chrome, so a feature row and a grid row look related. */
+.feature__item {
+  .archive__item-body {
+    padding-bottom: 0.5em;
+  }
+
+  &:not(.feature__item--left):not(.feature__item--right):not(.feature__item--center) {
+    .archive__item {
+      height: 100%;
+      padding: 1.25em;
+      border: 1px solid $light-gray;
+      border-radius: $border-radius;
+      background: $lighter-gray;
+    }
+  }
+}
+
+/* Honour a reduced-motion preference for the hover lift. */
+@media (prefers-reduced-motion: reduce) {
+  .grid__item .archive__item {
+    transition: none;
+
+    &:hover {
+      transform: none;
+    }
+  }
+}
+
+/* ==========================================================================
    Network visualisation — the animated myco-morph graph
    ========================================================================== */
 
