@@ -3,7 +3,7 @@ title: "Taiwan AI Startups Community"
 eyebrow: "Co-founder · since 2025"
 excerpt: "A Taipei community for AI founders and builders. I co-founded it and lead development."
 collection: portfolio
-order: 3
+order: 1
 cta: "Visit TASC"
 link: "http://www.taiwanaistartups.com"
 ---

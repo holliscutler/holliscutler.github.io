@@ -7,7 +7,7 @@
 
 <main id="main" class="band band--white detail">
   <div class="wrap">
-    <a class="detail__back" href="{{ page.back_url | default: '/' }}">&larr; {{ page.back_label | default: 'Back' }}</a>
+    <a class="detail__back" data-back href="{{ page.back_url | default: '/' }}">&larr; {{ page.back_label | default: 'Back' }}</a>
 
     <h1 class="detail__title">{{ page.title }}</h1>
 
@@ -27,14 +27,55 @@
         <p>{{ page.citation }}</p>
       {% endif %}
 
-      {% if page.paperurl and page.paperurl != "" %}
-        <p><a class="btn btn--solid" href="{{ page.paperurl }}">Read the full text</a></p>
+      {% if page.paperurl != blank or page.posterurl != blank or page.slidesurl != blank %}
+        <p class="detail__actions">
+          {% if page.paperurl != blank %}
+            <a class="btn btn--solid" href="{{ page.paperurl }}">Read the full text</a>
+          {% endif %}
+          {% if page.posterurl != blank %}
+            <a class="btn btn--ghost" href="{{ page.posterurl }}">View the poster</a>
+          {% endif %}
+          {% if page.slidesurl != blank %}
+            {%- comment -%}
+              Naming the format matters here: a .pptx starts an 11 MB download
+              rather than opening in the browser, so say so before the click.
+            {%- endcomment -%}
+            <a class="btn btn--ghost" href="{{ page.slidesurl }}">
+              Defense slides{% if page.slidesurl contains ".pptx" %} (PPTX){% endif %}
+            </a>
+          {% endif %}
+        </p>
       {% endif %}
     </div>
   </div>
 
   <div class="wrap">{% include site-footer.html %}</div>
 </main>
+
+<script>
+  // "Back" should return you to where you were, not to the top of the section.
+  // The href is a real URL so the link works without JS and for new-tab clicks;
+  // when we know the previous page was ours, step through history instead so
+  // the browser restores the exact scroll position.
+  (function () {
+    var link = document.querySelector("[data-back]");
+    if (!link || !document.referrer || history.length <= 1) return;
+
+    var ref;
+    try { ref = new URL(document.referrer); } catch (e) { return; }
+    if (ref.origin !== location.origin) return;          // arrived from outside
+    if (ref.pathname === location.pathname) return;      // reload, not a visit
+
+    if ("scrollRestoration" in history) history.scrollRestoration = "auto";
+
+    link.addEventListener("click", function (e) {
+      // let modified clicks open a normal new tab/window
+      if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      e.preventDefault();
+      history.back();
+    });
+  })();
+</script>
 
 {% if page.mathjax %}
   {%- comment -%}

@@ -237,6 +237,78 @@ p { margin: 0 0 1em; }
 
 /* ------------------------------------------------------------- research -- */
 
+/* Category divider: a mono label with a rule running out to the right. */
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 2.75rem 0 1.5rem;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.divider::after {
+  content: "";
+  flex: 1 1 auto;
+  height: 1px;
+  background: var(--line);
+}
+
+.divider:first-of-type { margin-top: 0; }
+
+/* The walkthrough entry — a wide, clickable panel, deliberately different
+   from the publication rows so it does not read as another paper. */
+.explainer {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  align-items: center;
+  padding: 1.5rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--cream);
+  text-decoration: none;
+  transition: border-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+@media (min-width: 46em) {
+  .explainer { grid-template-columns: minmax(0, 1fr) 15rem; }
+}
+
+.explainer:hover {
+  border-color: var(--green);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(20, 24, 22, 0.08);
+}
+
+.explainer__title { font-size: 1.2rem; margin-bottom: 0.5rem; }
+
+.explainer__text {
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin-bottom: 0.9rem;
+}
+
+.explainer__cta { font-size: 0.85rem; font-weight: 600; color: var(--green); }
+
+.explainer__thumb {
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+  border: 1px solid var(--line);
+  background: var(--white);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .explainer { transition: none; }
+  .explainer:hover { transform: none; }
+}
+
+
 .pub {
   display: grid;
   grid-template-columns: 1fr;
@@ -245,7 +317,14 @@ p { margin: 0 0 1em; }
   border-top: 1px solid var(--line);
 }
 
-.pub:first-of-type { border-top: 0; padding-top: 0; }
+/* `.pub` rows are separated by a top border, but the first row of each group
+   sits directly under a divider that already draws its own rule — so clear it,
+   otherwise every group after the first shows two stacked lines. */
+.pub:first-of-type,
+.divider + .pub {
+  border-top: 0;
+  padding-top: 0;
+}
 
 @media (min-width: 52em) {
   .pub { grid-template-columns: 15rem minmax(0, 1fr); }
@@ -306,12 +385,9 @@ p { margin: 0 0 1em; }
 
 .pub__links a:hover { border-bottom-color: var(--green); color: var(--green); }
 
-/* A link with no destination yet reads as disabled rather than broken. */
-.pub__links .is-pending {
-  color: var(--faint);
-  border-bottom-style: dotted;
-  cursor: not-allowed;
-}
+/* Matches the Projects card and walkthrough CTAs, so every "go deeper"
+   affordance on the page looks the same. */
+.pub__more { font-weight: 600; }
 
 .link-arrow {
   font-size: 0.85rem;
@@ -480,6 +556,13 @@ p { margin: 0 0 1em; }
   margin: 1.25rem 0 0.75rem;
 }
 
+.detail__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 2rem;
+}
+
 .detail__meta {
   font-family: var(--mono);
   font-size: 0.72rem;
@@ -528,6 +611,13 @@ p { margin: 0 0 1em; }
 .prose li { margin-bottom: 0.4em; }
 
 .prose a { color: var(--green); text-decoration: underline; text-underline-offset: 2px; }
+
+/* Buttons inside prose: `.prose a` is more specific than `.btn--solid`, so
+   without these the solid button renders green-on-green and the underline
+   bleeds through. Match the specificity rather than reaching for !important. */
+.prose a.btn { text-decoration: none; }
+.prose a.btn--solid { color: #fff; }
+.prose a.btn--ghost { color: var(--ink); }
 
 .prose table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
 .prose th, .prose td { text-align: left; padding: 0.5em 0.75em; border-bottom: 1px solid var(--line); }
@@ -674,4 +764,96 @@ p { margin: 0 0 1em; }
   .network-viz canvas { height: 300px; }
   .network-viz__controls { flex-wrap: wrap; }
   .network-viz__readout { order: 3; width: 100%; white-space: normal; }
+}
+
+/* =========================================================================
+   Architecture diagrams
+   ------------------------------------------------------------------------- */
+
+.arch {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.75rem;
+  margin: 2rem 0 2.5rem;
+}
+
+@media (min-width: 46em) {
+  .arch { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  /* MycoMorph carries a second row of drawings, so it gets the full width */
+  .arch__item--wide { grid-column: 1 / -1; }
+}
+
+.arch__item {
+  margin: 0;
+  padding: 1.25rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--white);
+}
+
+.arch__item--wide { background: var(--cream); border-color: var(--green); }
+
+.arch__svg { width: 100%; height: auto; }
+
+.arch__item figcaption {
+  margin-top: 0.9rem;
+  font-size: 0.82rem;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+.arch__item figcaption strong { color: var(--ink); }
+
+/* Labels inside the SVGs. Set here rather than per-element so every diagram
+   stays on the same type scale. */
+.arch__tag {
+  font-family: var(--mono);
+  font-size: 7.5px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  fill: var(--muted);
+}
+
+.arch__tag--accent { fill: var(--green); }
+
+/* =========================================================================
+   Page transitions
+   -------------------------------------------------------------------------
+   Cross-document view transitions make clicking through to a detail page a
+   crossfade instead of a white flash. Supported browsers only; everywhere
+   else navigation is unchanged (no JS, no layout shift either way).
+   ========================================================================= */
+
+@view-transition { navigation: auto; }
+
+/* The header is the same element on both pages, so give it a stable name and
+   it stays put instead of fading with the rest of the document. */
+.site-header { view-transition-name: site-header; }
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.22s;
+  animation-timing-function: ease;
+}
+
+/* Browsers without view transitions get a small fade-in instead, so the jump
+   between pages still reads as a transition rather than a cut. */
+@supports not (view-transition-name: none) {
+  @media (prefers-reduced-motion: no-preference) {
+    body { animation: page-fade 0.2s ease both; }
+  }
+}
+
+@keyframes page-fade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+  body { animation: none !important; }
 }

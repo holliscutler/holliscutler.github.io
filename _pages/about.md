@@ -18,7 +18,7 @@ lede: >-
   Taiwan AI Startups Community.
 actions:
   - label: "Read the research"
-    url: "/research/"
+    url: "#research"
     style: "solid"
   - label: "View CV"
     url: "/cv/"

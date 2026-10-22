@@ -34,33 +34,55 @@
         {% endif %}
       </div>
 
-      {% assign papers = site.publications | where_exp: "p", "p.homepage != false" | sort: "order" %}
-      {% for p in papers %}
-        <article class="pub">
-          <div class="pub__meta">
-            {% if p.venue and p.venue != "" %}<div>{{ p.venue }}</div>{% endif %}
-            {% if p.location and p.location != "" %}<div>{{ p.location }} · {{ p.date | date: "%b %Y" }}</div>
-            {% else %}<div>{{ p.date | date: "%b %Y" }}</div>{% endif %}
-            {% if p.status and p.status != "" %}<span class="pub__status">{{ p.status }}</span>{% endif %}
-          </div>
-          <div>
-            <h3 class="pub__title"><a href="{{ p.url | relative_url }}">{{ p.title }}</a></h3>
-            {% if p.authors %}<p class="pub__authors">{{ p.authors }}</p>{% endif %}
-            <p class="pub__abstract">{{ p.excerpt | strip_html | strip }}</p>
-            {% if p.links %}
-              <p class="pub__links">
-                {% for l in p.links %}
-                  {% if l.url == "#" or l.url == "" %}
-                    <span class="is-pending" title="Not available yet">{{ l.label }}</span>
-                  {% else %}
-                    <a href="{{ l.url }}">{{ l.label }}</a>
-                  {% endif %}
-                {% endfor %}
-              </p>
-            {% endif %}
-          </div>
-        </article>
+      {%- comment -%}
+        One divider per publication category, in the order set by
+        `publication_category` in _config.yml. Empty categories are skipped.
+      {%- endcomment -%}
+      {% assign all = site.publications | where_exp: "p", "p.homepage != false" %}
+      {% for category in site.publication_category %}
+        {% assign group = all | where: "category", category[0] | sort: "order" %}
+        {% if group.size > 0 %}
+          <h3 class="divider"><span>{{ category[1].title }}</span></h3>
+          {% for p in group %}
+            <article class="pub">
+              <div class="pub__meta">
+                {% if p.venue and p.venue != "" %}<div>{{ p.venue }}</div>{% endif %}
+                {% if p.location and p.location != "" %}<div>{{ p.location }} · {{ p.date | date: "%b %Y" }}</div>
+                {% else %}<div>{{ p.date | date: "%b %Y" }}</div>{% endif %}
+                {% if p.status and p.status != "" %}<span class="pub__status">{{ p.status }}</span>{% endif %}
+              </div>
+              <div>
+                <h4 class="pub__title"><a href="{{ p.url | relative_url }}">{{ p.title }}</a></h4>
+                {% if p.authors %}<p class="pub__authors">{{ p.authors }}</p>{% endif %}
+                <p class="pub__abstract">{{ p.excerpt | strip_html | strip }}</p>
+                {%- comment -%}
+                  Every entry gets the same affordance into its own page, where
+                  the abstract and the link to the full text live. External
+                  links (DOI, PDF) belong there, not in this list.
+                {%- endcomment -%}
+                <p class="pub__links">
+                  <a class="pub__more" href="{{ p.url | relative_url }}">Read more &rarr;</a>
+                </p>
+              </div>
+            </article>
+          {% endfor %}
+        {% endif %}
       {% endfor %}
+
+      <h3 class="divider"><span>How it works</span></h3>
+      <a class="explainer" href="/how-it-works/">
+        <div class="explainer__body">
+          <h4 class="explainer__title">Watch the network build itself</h4>
+          <p class="explainer__text">
+            A visual walkthrough of the model: the real graph growing from
+            nothing over three months of data, the four-step mechanism, and what
+            the structure looks like when a season turns.
+          </p>
+          <span class="explainer__cta">Open the walkthrough &rarr;</span>
+        </div>
+        <img class="explainer__thumb" src="/images/network-still.png"
+             alt="The model's graph after three months: a dense cloud of nodes with one bright reinforced circuit running through it." loading="lazy">
+      </a>
     </div>
   </section>
 

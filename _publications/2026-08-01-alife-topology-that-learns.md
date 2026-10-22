@@ -3,7 +3,7 @@ title: "Topology That Learns: Investigating Mycelial and Physarum Networks as a 
 collection: publications
 category: conferences
 permalink: /publication/2026-08-01-alife-topology-that-learns
-excerpt: 'Two distant lineages, fungi and slime mould, independently arrived at the same flow-based way of adapting a network. This paper argues that this "double convergence" is an unexplored paradigm for streaming multivariate prediction on edge devices: fungal architecture as the blueprint, the Physarum conductivity equation as the formalism.'
+excerpt: "Fungi and slime mould arrived independently at the same way of adapting a network: strengthen the paths that carry flow, let the rest fade. This paper asks which of those properties can carry over into a computational model, and sets out the conceptual blueprint — fungal architecture as the structure, the Physarum conductivity equation as the formalism."
 date: 2026-08-01
 venue: 'ALIFE 2026 · MIT Press'
 location: 'Waterloo, Canada'
@@ -12,17 +12,9 @@ authors: 'Hollister Cutler, Chih-Hung G. Li'
 order: 1
 mathjax: true
 paperurl: 'https://doi.org/10.1162/isal.a.1038'
+posterurl: '/files/alife-2026-poster.pdf'
 citation: 'Cutler, H., &amp; Li, C.-H. G. (2026). &quot;Topology That Learns: Investigating Mycelial and Physarum Networks as a Conceptual Blueprint for Streaming Time Series Prediction.&quot; <i>ALIFE 2026: Proceedings of the 2026 Artificial Life Conference</i>. MIT Press. https://doi.org/10.1162/isal.a.1038'
-links:
-  - label: "Paper"
-    url: "https://doi.org/10.1162/isal.a.1038"
-  # - label: "Slides"
-  #   url: "/files/alife-2026-slides.pdf"
-  # - label: "BibTeX"
-  #   url: "/files/alife-2026.bib"
 ---
-
-With Chih-Hung G. Li, National Taipei University of Technology.
 
 ## Abstract
 
