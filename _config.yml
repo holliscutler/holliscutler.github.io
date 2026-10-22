@@ -9,9 +9,9 @@
 # Basic Site Settings
 locale                   : "en-US"
 site_theme               : "default" # The available themes options are "default", "air", "sunrise", "mint", "dirt" and "contrast"
-title                    : "Hollis Cutler"
+title                    : "Hollister Cutler"
 title_separator          : "-"
-name                     : &name "Hollis Cutler"
+name                     : &name "Hollister Cutler"
 description              : &description "Bio-inspired AI researcher. Co-founder, Taiwan AI Startups Community."   # Update this with a general description of your site, this is the default if not overridden by a page
 url                      : https://holliscutler.github.io # The base hostname & protocol for your site e.g. "https://[your GitHub username].github.io",
                                                            # or if you already have some other page hosted on Github then use "https://[your GitHub username].github.io/[Your Repo Name]"
@@ -24,13 +24,15 @@ repository               : "holliscutler/holliscutler.github.io"
 author:
   # Biographic information
   avatar           : "profile.png"
-  name             : "Hollis Cutler"
+  name             : "Hollister Cutler"
   pronouns         : # example: "she/her"  
   bio              : "Bio-inspired AI. Streaming prediction with topology that adapts to its data."
   location         : "Taipei, Taiwan"
   employer         : "National Taipei University of Technology"
   uri              : # URL
-  email            :  # TODO add if you want a public contact address 
+  email            :  # Intentionally blank — no public email by choice. Adding one
+                       # here puts a mail icon in the sidebar and exposes the
+                       # address to scrapers.
 
   # Academic websites
   academia         : # URL
