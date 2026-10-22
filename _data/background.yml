@@ -1,0 +1,27 @@
+# The Background timeline on the homepage. Newest first — the order here is the
+# order rendered, so no date parsing is involved.
+blurb: >-
+  Computer science, then a year farming, then hardware and automation in Taiwan.
+  I'm looking for work in the Bay Area at the intersection of AI, hardware and
+  ecology.
+
+timeline:
+  - period: "2025 –"
+    role: "Co-Founder & Lead Developer, Taiwan AI Startups Community"
+    detail: "Taipei"
+
+  - period: "2024 – 26"
+    role: "M.S., Mechanical & Automation Engineering"
+    detail: "National Taipei University of Technology"
+
+  - period: "2023 – 24"
+    role: "Organic farmer, WWOOF"
+    detail: "Ireland · Scotland · New Zealand"
+
+  - period: "2022"
+    role: "Back End Developer Intern, IBM"
+    detail: "Red Hat Marketplace · OpenShift CI/CD"
+
+  - period: "2019 – 23"
+    role: "B.A. Computer Science, minor in Chinese"
+    detail: "University of Virginia"

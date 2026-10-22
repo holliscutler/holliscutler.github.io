@@ -1,0 +1,46 @@
+{%- comment -%}
+Hero figure: a flow network with two reinforced paths running through the
+centre node. Inline SVG rather than the live animation — the real thing lives
+on the research page, where it has room and the payload is justified.
+{%- endcomment -%}
+<figure class="hero__figure">
+  <svg viewBox="0 0 520 300" role="img" width="520" height="300"
+       aria-label="A network of nodes joined by thin edges, with two thicker reinforced paths crossing at a filled centre node.">
+    <g fill="none" stroke="#16181a" stroke-linecap="round">
+      <!-- thin edges: transitions seen, but not yet reinforced -->
+      <g stroke-width="1" opacity="0.55">
+        <path d="M100 78 L205 22"/>
+        <path d="M205 22 L300 50"/>
+        <path d="M300 50 L432 24"/>
+        <path d="M100 78 L182 168"/>
+        <path d="M100 78 Q60 150 30 212"/>
+        <path d="M30 212 L182 168"/>
+        <path d="M182 168 L182 252"/>
+        <path d="M182 252 Q320 288 440 198"/>
+        <path d="M440 198 L432 24"/>
+        <path d="M258 128 L300 50"/>
+        <path d="M258 128 L440 198"/>
+        <path d="M258 128 L182 168"/>
+        <path d="M258 128 L182 252"/>
+        <path d="M258 128 L205 22"/>
+      </g>
+      <!-- reinforced: the path the signal keeps taking -->
+      <g stroke-width="3.4">
+        <path d="M30 212 L258 128"/>
+        <path d="M258 128 L432 24"/>
+      </g>
+    </g>
+    <g stroke="#16181a" stroke-width="1.4">
+      <circle cx="100" cy="78" r="5.5" fill="#ffffff"/>
+      <circle cx="205" cy="22" r="6" fill="#ffffff"/>
+      <circle cx="300" cy="50" r="5" fill="#ffffff"/>
+      <circle cx="432" cy="24" r="6.5" fill="#ffffff"/>
+      <circle cx="182" cy="168" r="4.5" fill="#ffffff"/>
+      <circle cx="30" cy="212" r="7" fill="#ffffff"/>
+      <circle cx="182" cy="252" r="6.5" fill="#ffffff"/>
+      <circle cx="440" cy="198" r="6.5" fill="#ffffff"/>
+    </g>
+    <circle cx="258" cy="128" r="9.5" fill="#1c4e35" stroke="#1c4e35"/>
+  </svg>
+  <figcaption class="hero__caption">dD/dt = f(|Q|) − γD · edges that carry flow thicken; idle ones decay.</figcaption>
+</figure>

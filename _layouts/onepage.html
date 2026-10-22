@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="{{ site.locale | default: 'en' }}">
+<head>{% include site-head.html %}</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+{% include site-header.html %}
+
+<main id="main">
+
+  {%- comment -%} ---------------------------------------------- hero ---- {%- endcomment -%}
+  <section class="band band--cream hero">
+    <div class="wrap hero__grid">
+      <div>
+        <p class="eyebrow">{{ page.eyebrow }}</p>
+        <h1>{{ page.headline }}</h1>
+        <p class="hero__lede">{{ page.lede }}</p>
+        <div class="btn-row">
+          {% for b in page.actions %}
+            <a class="btn btn--{{ b.style | default: 'ghost' }}" href="{{ b.url }}">{{ b.label }}</a>
+          {% endfor %}
+        </div>
+      </div>
+      {% include hero-graph.html %}
+    </div>
+  </section>
+
+  {%- comment -%} ------------------------------------------ research ---- {%- endcomment -%}
+  <section class="band band--white" id="research">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Research</h2>
+        {% if site.author.googlescholar %}
+          <a class="link-arrow" href="{{ site.author.googlescholar }}">Google Scholar &rarr;</a>
+        {% endif %}
+      </div>
+
+      {% assign papers = site.publications | where_exp: "p", "p.homepage != false" | sort: "order" %}
+      {% for p in papers %}
+        <article class="pub">
+          <div class="pub__meta">
+            {% if p.venue and p.venue != "" %}<div>{{ p.venue }}</div>{% endif %}
+            {% if p.location and p.location != "" %}<div>{{ p.location }} · {{ p.date | date: "%b %Y" }}</div>
+            {% else %}<div>{{ p.date | date: "%b %Y" }}</div>{% endif %}
+            {% if p.status and p.status != "" %}<span class="pub__status">{{ p.status }}</span>{% endif %}
+          </div>
+          <div>
+            <h3 class="pub__title"><a href="{{ p.url | relative_url }}">{{ p.title }}</a></h3>
+            {% if p.authors %}<p class="pub__authors">{{ p.authors }}</p>{% endif %}
+            <p class="pub__abstract">{{ p.excerpt | strip_html | strip }}</p>
+            {% if p.links %}
+              <p class="pub__links">
+                {% for l in p.links %}
+                  {% if l.url == "#" or l.url == "" %}
+                    <span class="is-pending" title="Not available yet">{{ l.label }}</span>
+                  {% else %}
+                    <a href="{{ l.url }}">{{ l.label }}</a>
+                  {% endif %}
+                {% endfor %}
+              </p>
+            {% endif %}
+          </div>
+        </article>
+      {% endfor %}
+    </div>
+  </section>
+
+  {%- comment -%} ------------------------------------------ projects ---- {%- endcomment -%}
+  <section class="band band--cream" id="projects">
+    <div class="wrap">
+      <div class="section-head"><h2>Projects</h2></div>
+      <div class="cards">
+        {% assign projects = site.portfolio | sort: "order" %}
+        {% for proj in projects %}
+          <article class="card{% if proj.featured %} card--dark{% endif %}">
+            {% if proj.eyebrow %}<p class="card__eyebrow">{{ proj.eyebrow }}</p>{% endif %}
+            <h3 class="card__title">{{ proj.title }}</h3>
+            <p class="card__body">{{ proj.excerpt | strip_html | strip }}</p>
+            {% if proj.link %}
+              <a class="card__cta" href="{{ proj.link }}">{{ proj.cta | default: "Read more" }} &rarr;</a>
+            {% endif %}
+          </article>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  {%- comment -%} ---------------------------------------- background ---- {%- endcomment -%}
+  <section class="band band--white" id="background">
+    <div class="wrap bg-grid">
+      <div>
+        <div class="section-head"><h2>Background</h2></div>
+        <p class="bg-grid__intro">{{ site.data.background.blurb }}</p>
+      </div>
+      <div class="timeline">
+        {% for row in site.data.background.timeline %}
+          <div class="timeline__row">
+            <div class="timeline__period">{{ row.period }}</div>
+            <div>
+              <div class="timeline__role">{{ row.role }}</div>
+              {% if row.detail %}<div class="timeline__detail">{{ row.detail }}</div>{% endif %}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  {%- comment -%} ------------------------------------------- contact ---- {%- endcomment -%}
+  <section class="band band--cream contact" id="contact">
+    <div class="wrap">
+      <h2>{{ page.contact_headline }}</h2>
+      <div class="btn-row">
+        {% if site.author.email %}
+          <a class="btn btn--solid" href="mailto:{{ site.author.email }}">Email me</a>
+        {% endif %}
+        {% if site.author.github %}
+          <a class="btn btn--ghost" href="https://github.com/{{ site.author.github }}">GitHub</a>
+        {% endif %}
+        {% if site.author.linkedin %}
+          <a class="btn btn--ghost" href="https://www.linkedin.com/in/{{ site.author.linkedin }}">LinkedIn</a>
+        {% endif %}
+      </div>
+      {% include site-footer.html %}
+    </div>
+  </section>
+
+</main>
+
+<script>
+  // Shadow the header once the page scrolls, and mark the section currently in
+  // view. Both are progressive niceties — the page is fully usable without JS.
+  (function () {
+    var header = document.getElementById("site-header");
+    var links = Array.prototype.slice.call(document.querySelectorAll(".site-nav a"));
+    var sections = links
+      .map(function (a) { return document.querySelector(a.getAttribute("href").replace(/^\//, "")); })
+      .filter(Boolean);
+
+    function onScroll() {
+      header.setAttribute("data-stuck", window.scrollY > 8 ? "true" : "false");
+    }
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+
+    if (!("IntersectionObserver" in window) || !sections.length) return;
+    var seen = new Map();
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { seen.set(e.target.id, e.intersectionRatio); });
+      var best = null, bestRatio = 0;
+      seen.forEach(function (ratio, id) {
+        if (ratio > bestRatio) { bestRatio = ratio; best = id; }
+      });
+      links.forEach(function (a) {
+        var match = best && a.getAttribute("href").endsWith("#" + best);
+        if (match) { a.setAttribute("aria-current", "true"); }
+        else { a.removeAttribute("aria-current"); }
+      });
+    }, { threshold: [0.1, 0.35, 0.6] });
+    sections.forEach(function (s) { io.observe(s); });
+  })();
+</script>
+</body>
+</html>

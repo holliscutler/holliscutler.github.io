@@ -1,0 +1,16 @@
+{%- comment -%}
+On the homepage the nav scrolls to sections; everywhere else it has to travel
+home first, so the hrefs are prefixed.
+{%- endcomment -%}
+{% if page.url == "/" %}{% assign base = "" %}{% else %}{% assign base = "/" %}{% endif %}
+<header class="site-header" id="site-header">
+  <div class="wrap site-header__inner">
+    <a class="site-header__name" href="/">{{ site.name }}</a>
+    <nav class="site-nav" aria-label="Sections">
+      <a href="{{ base }}#research">Research</a>
+      <a href="{{ base }}#projects">Projects</a>
+      <a href="{{ base }}#background">Background</a>
+      <a href="{{ base }}#contact">Contact</a>
+    </nav>
+  </div>
+</header>

@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="{{ site.locale | default: 'en' }}">
+<head>{% include site-head.html %}</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+{% include site-header.html %}
+
+<main id="main" class="band band--white detail">
+  <div class="wrap">
+    <a class="detail__back" href="{{ page.back_url | default: '/' }}">&larr; {{ page.back_label | default: 'Back' }}</a>
+
+    <h1 class="detail__title">{{ page.title }}</h1>
+
+    {%- capture meta -%}
+      {% if page.authors %}{{ page.authors }}{% endif %}
+      {% if page.venue and page.venue != "" %}{% if page.authors %} · {% endif %}{{ page.venue }}{% endif %}
+      {% if page.date %} · {{ page.date | date: "%B %Y" }}{% endif %}
+    {%- endcapture -%}
+    {% assign meta = meta | strip %}
+    {% if meta != "" %}<p class="detail__meta">{{ meta }}</p>{% endif %}
+
+    <div class="prose">
+      {{ content }}
+
+      {% if page.citation and page.citation != "" %}
+        <h2>Citation</h2>
+        <p>{{ page.citation }}</p>
+      {% endif %}
+
+      {% if page.paperurl and page.paperurl != "" %}
+        <p><a class="btn btn--solid" href="{{ page.paperurl }}">Read the full text</a></p>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="wrap">{% include site-footer.html %}</div>
+</main>
+
+{% if page.mathjax %}
+  {%- comment -%}
+    Only loaded on pages that actually contain maths. Kramdown turns $$…$$ into
+    \[…\], which is in MathJax's default display delimiters.
+  {%- endcomment -%}
+  <script id="MathJax-script" defer
+          src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.js"></script>
+{% endif %}
+</body>
+</html>
