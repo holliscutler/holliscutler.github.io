@@ -1,0 +1,35 @@
+# The following is the order of the links in the header of the website.
+#
+# Changing the order here will adjust the order and you can also add additional
+# links. Removing a link prevents it from showing in the header, but does not
+# prevent it from being included in the site.
+#
+# NOTE that only one of the CV options should be selected, the first is for the
+#      Markdown formatted page while the second is generated using JSON.
+
+main:
+  - title: "Publications"
+    url: /publications/
+
+  - title: "Projects"
+    url: /portfolio/
+
+  - title: "CV"
+    url: /cv/
+
+  # Uncomment any of these once you have content for them. The pages exist
+  # either way — leaving them out of this list only hides them from the header.
+  #
+  # - title: "Talks"
+  #   url: /talks/
+  #
+  # - title: "Teaching"
+  #   url: /teaching/
+  #
+  # - title: "Blog Posts"
+  #   url: /year-archive/
+  #
+  # The template's own authoring guide. Useful while you customize; not
+  # something you want in a visitor's menu.
+  # - title: "Guide"
+  #   url: /markdown/
